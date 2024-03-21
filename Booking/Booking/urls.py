@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from BookStatus import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sign-up/', views.signUp),
+    path('', views.home),
 ]
