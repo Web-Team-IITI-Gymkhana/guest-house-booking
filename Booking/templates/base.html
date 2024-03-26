@@ -1,0 +1,309 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-6uVsAs4oOfsYtP2eU6gjN06yP9kYVfT1wo/Ps/lzq26t9mw1kFc6DSKl2GoRqB6PyI+0evcz1vgmVSaw8PVsRg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+     
+      
+      
+      <link rel="stylesheet" href="{% static 'home.css' %}">
+      <link rel="stylesheet" href="{% static 'styles.css' %}">
+     
+
+      <title>Responsive navbar </title>
+
+      
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body{
+	line-height: 1;
+	font-family: 'Poppins', sans-serif;
+}
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+
+.heads{
+	display:flex;
+    flex-direction: column;
+}
+.row{
+	
+	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 2rem;
+    /* gap:inherit; */
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color: #060650;
+    padding: 70px 0;
+	
+}
+.footer-col{
+   /* width: 40%;
+   padding: 0 15px;
+   display: flex;
+   flex-direction: column; */
+    width:300px;
+    margin:1rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    color: rgb(7, 2, 109);
+    line-height: 17px;
+}
+   
+.footer-col h4{
+	font-size: 20px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+/* .footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+} */
+.footer-col ul li {
+	font-size: 16px;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	line-height: normal;
+	display: block;
+	transition: all 0.3s ease;
+}
+
+.footer-col .icontext{
+    display: flex;
+    flex-direction: row;
+    color:#ffffff;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	background-color:#07024b;
+	text-align: center;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+
+/* @media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+} */
+/* Add media queries for responsiveness */
+
+/* Add media queries for responsiveness */
+/* Add media queries for responsiveness */
+@media screen and (max-width: 674px) {
+	
+    .row{
+        justify-content:center;
+        align-items: center;
+    }
+	.footer-col {
+        justify-content:center;
+        align-items: center;
+	}
+    .footer-col ul {
+         /* Remove default padding for unordered lists */
+        text-align: center; /* Align text to the left within the list */
+    }
+
+    .footer-col ul li {
+        text-align: center; 
+        display: block; /* Ensure list items are displayed as block elements */
+        /* Align text to the left within list items */
+        /* Add margin between list items */ 
+    }
+    .footer-col .social-links{
+        text-align: center; 
+        
+    }
+    .footer-col .icontext{
+        justify-content: center;
+    }
+    .footer-col .icontext a{
+        justify-content: center;
+        
+    }
+	
+	
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+      </style>
+   </head>
+   <body>
+      
+      <header class="header" id="header">
+         <nav class="nav container">
+            <!-- <a href="#" class="nav__logo">Logo</a> -->
+
+            <div class="nav__menu_main" id="nav-menu_main">
+               <ul class="nav__list">
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Home</a>
+                  </li>
+
+                  <li class="nav__item"> 
+                     <a href="#" class="nav__link"> FAQ's</a>
+                  </li>
+
+                  <li class="nav__item">
+                     <a href="#" class="nav__link">Contact</a>
+                  </li>
+               </ul>
+               </div> 
+         
+               <div class="nav_menu_signup" id="nav_menu_signup">
+               <ul class="nav__list_signup">
+
+                <li class="nav__item_signup" >
+                    <a href="#" class="nav__link">Login</a>
+                </li>
+                
+                <li class="nav__item_signup">
+                    <a href="#" class="nav__link" >Signup</a>
+                </li>
+                </ul>
+                                 
+              </div>
+
+               
+         </nav>
+      </header>
+
+
+      {% block content %}
+      {% endblock content %}
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class ="heads">
+                <div class="row">
+                    <div class="footer-col">
+                        <h4>LOCATION:</h4>
+                        <ul>
+                            <li>Indian Institute of Technology, Indore</li>
+                            <li>Simrol, Khandwa Road</li>
+                            <li>INDORE, 453552</li>
+                            
+                            
+                        </ul>
+                    </div>
+    
+    
+                    
+                    <div class="footer-col">
+                        <h4>CONTACT:</h4>
+                        <ul>
+                            <li>Mail:</li>
+                            <li>
+                                <div class="icontext">
+                                    <div class="social-links">
+                                        <a href="#"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                    guesthouse@gmail.com
+                                </div>
+                            </li>
+                            <li>Phone:</li>
+                            <li>
+                                <div class="icontext">
+                                    <div class="social-links">
+                                        <a href="#"><i class="fas fa-phone"></i></a>
+                                    </div>
+                                   +91 9746573456
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="footer-col">
+                        <h4>IMPORTANTT:</h4>
+                        <ul>
+                            <div class="contacts-new"><li>Safety:</li>
+                         <li>+91 9746573456</li></div>
+                         
+                         <!-- <li>
+                             <div class="icontext">
+                                 <div class="social-links">
+                                     <a href="#"><i class="fas fa-phone"></i></a>
+                                 </div>
+                                 
+                             </div>
+                         </li> -->
+                         <div class="contacts-new"><li>Security:</li>
+                         <li>+91 9746573456</li></div>
+                         
+                         <!-- <li>
+                             <div class="icontext">
+                                 <div class="social-links">
+                                     <a href="#"><i class="fas fa-phone"></i></a>
+                                 </div>
+                                 9746573456
+                             </div> 
+                         </li>-->
+                         <div class="contacts-new"><li>Health emergency:</li>
+                         <li>+91 9746573456</li></div>
+                         
+                        <!-- <li>
+                              <div class="icontext">
+                                 <div class="social-links">
+                                     <a href="#"><i class="fas fa-phone"></i></a>
+                                 </div>
+                                 9746573456
+                             </div> 
+                         </li>-->
+                        </ul>
+                    </div>
+                
+                </div>
+             </div>
+        </div>
+   </footer>
+ 
+ </body>
+ </html>
+ 
+ 
