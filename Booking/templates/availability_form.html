@@ -1,0 +1,90 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-12">
+
+
+        <form action="" method="post" class="request_form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="contact">Contact:</label>
+                <input type="text" id="contact" name="contact">
+            </div>
+            
+            <div class="form-group">
+                <label for="number_guest">Number of Guests:</label>
+                <input type="number" id="number_guest" name="number_guest">
+            </div>
+            
+            <div class="form-group">
+                <label for="check_in">Check-In Date:</label>
+                <input type="date" id="check_in" name="check_in">
+            </div>
+            
+            <div class="form-group">
+                <label for="check_out">Check-Out Date:</label>
+                <input type="date" id="check_out" name="check_out">
+            </div>
+            
+            <div class="form-group">
+                <label for="reason">Reason:</label>
+                <textarea id="reason" name="reason"></textarea>
+            </div>
+            
+            <input type="submit" value="Submit"> 
+        </form>
+
+
+
+
+
+        
+    </div>
+</div>
+{% endblock content %}
+
+
+<!-- <form action="" method="post" class="request_form">
+            {% csrf_token %}
+            
+            {{ form.as_ul }}
+
+            {% if form.errors %}
+                <div>
+                    <p>{{ form.errors }}</p>
+                </div>
+            {% endif %}
+
+            <input type="submit" value="Submit"> 
+        </form> -->
+
+
+
+ 
+
+
+

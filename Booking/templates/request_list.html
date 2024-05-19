@@ -1,0 +1,51 @@
+{% extends "admin/change_list.html" %}
+
+{% block extrahead %}
+<style>
+    .card_container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+        border: 2px solid #0c0b0b;
+        padding: 25px;
+        margin: 16px;
+        border-radius: 14px;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+        max-width: fit-content;
+    }
+
+    .card h2 {
+        margin-top: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Request List</h1>
+<div class="card_container">
+    {% for req_data in request_data %}
+    <div class="card">
+        <h2>{{ req_data.request.first_name }} {{ req_data.request.last_name }}</h2>
+        <p><strong>Email:</strong> {{ req_data.request.email }}</p>
+        <p><strong>Contact:</strong> {{ req_data.request.contact }}</p>
+        <p><strong>Number of Guests:</strong> {{ req_data.request.number_guest }}</p>
+        <p><strong>reason:</strong> {{ req_data.request.reason }}</p>
+        <p><strong>Check-in Date:</strong> {{ req_data.request.check_in }}</p>
+        <p><strong>Check-out Date:</strong> {{ req_data.request.check_out }}</p>
+        
+        <label for="room">Select Room:</label>
+        <select name="room" id="room-{{ req_data.request.id }}">
+            {% for room in req_data.available_rooms %}
+            <option value="{{ room.room_no }}">{{ room.room_no }} - {{ room.room_type }} - {{ room.location }}</option>
+            {% endfor %}
+        </select>
+        
+        
+        
+        <button type="button" class="select-room-button" data-request-id="{{ req_data.request.id }}">Assign</button>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
