@@ -1,0 +1,42 @@
+.request_form {
+    margin-top: 100px;
+    width: 80%; 
+}
+
+
+
+.request_form input[type="text"],
+.request_form input[type="email"],
+.request_form input[type="number"],
+.request_form input[type="date"],
+.request_form textarea {
+    width: 30%;
+    display: inline-block;
+    width: calc(40% - 100px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height:25px;
+}
+.request_form textarea {
+    height:50px;
+}
+
+
+
+.request_form input[type="submit"] {
+    width: 30%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.request_form input[type="submit"]:hover {
+    background-color: #0056b3; 
+}

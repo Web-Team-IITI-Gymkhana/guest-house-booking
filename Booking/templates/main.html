@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Booking Bar -->
+    <div class="container-search">
+        <div class="search-bar">
+            <form action="#" method="get">
+                <div class="search-flex">
+                    <div class="form-field">
+                        <label for="from">From:</label>
+                        <input type="date" name="from" id="from" value="" tabindex="1">
+                    </div>
+                    <div class="form-field">
+                        <label for="to">To:</label>
+                        <input type="date" name="to" id="to" value="" tabindex="1">
+                    </div>
+                    <div class="form-field">
+                        <label for="noOfGuests">No. Of Rooms:</label>
+                        <input type="number" name="noOfGuests" id="noOfGuests" value="" tabindex="1">
+                    </div>
+                    <div class="form-field">
+                        <label for="roomType">Room Type:</label>
+                        <select name="roomType" id="roomType">
+                            <option value="AC">AC</option>
+                            <option value="NONAC">NON-AC</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <input type="submit" value="Search">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End of Booking Bar -->
+
+    <!-- Content Section -->
+    <section class="about top">
+        <div class="container-hotel flex">
+            <div class="left">
+                <div class="heading">
+                    <h2>Vindhyachal Guesthouse</h2>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis sint voluptas commodi omnis minus esse eos sunt aut rerum illo culpa fugiat quod, id quisquam sapiente, facilis incidunt quia maiores. Enim rem debitis dolor nemo consequuntur, unde veniam labore reiciendis aliquid excepturi nihil qui architecto, repellat temporibus ullam sapiente, eius magni pariatur impedit assumenda!</p>
+                <button class="primary-btn">View details</button>
+                <button class="secondary-btn">Book now</button>
+            </div>
+            <div class="right">
+                <img src="../static/abhinandan1.jpg" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="about reversed">
+        <div class="container-hotel flex">
+            <div class="right">
+                <img src="../static/abhinandan1.jpg" alt=""> 
+            </div>
+            <div class="left">
+                <div class="heading">
+                    <h2>Hostel Accommodation</h2>  
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis amet, quasi consectetur deleniti dolorum incidunt unde facilis odit, voluptates ullam dolore. Magnam culpa asperiores provident repellendus sequi commodi quibusdam veritatis hic recusandae necessitatibus. Commodi voluptas magnam accusamus distinctio assumenda, ipsam ab nihil sunt aliquam illum, eius saepe esse. Ullam cupiditate alias voluptatum vero.</p>
+                <button class="primary-btn">View Details</button> 
+                <button class="secondary-btn">Book now</button>
+            </div>
+        </div>
+    </section>
+    <!-- End of Content Section -->
+</body>
+</html>
+
+{% endblock %}
+
