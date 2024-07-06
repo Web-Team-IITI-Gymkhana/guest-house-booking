@@ -1,0 +1,159 @@
+{% extends "admin/change_list.html" %}
+
+{% block extrahead %}
+<style>
+    .card_container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+        border: 2px solid #0c0b0b;
+        padding: 25px;
+        margin: 16px;
+        border-radius: 14px;
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+        max-width: fit-content;
+    }
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 6px 6px 27px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h2 {
+        margin-top: 0;
+    }
+    .status {
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        
+        font-weight: bold;
+    }
+
+    .status.pending {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+  .button-container {
+        margin-top: 10px; 
+        display: flex;
+        justify-content: space-between; 
+    }
+
+    .send-email-button, .delete-request-button {
+        /* padding: 8px 16px;
+        
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer; */
+        transition: background-color 0.3s ease;
+        margin-right: 7px;
+        border-radius: 4px;
+    }
+    .send-email-button:hover, .delete-request-button:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+    .status.accepted {
+        background-color: #d4edda;
+        color: #155724;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Request List</h1>
+<div class="card_container">
+    {% for req_data in request_data %}
+    <div class="card" id="request-card-{{ req_data.request.id }}">
+        <h2>{{ req_data.request.first_name }} {{ req_data.request.last_name }}</h2>
+        <p><strong>Email:</strong> {{ req_data.request.email }}</p>
+        <p><strong>Contact:</strong> {{ req_data.request.contact }}</p>
+        <p><strong>Number of Guests:</strong> {{ req_data.request.number_guest }}</p>
+        <p><strong>reason:</strong> {{ req_data.request.reason }}</p>
+        <p><strong>Check-in Date:</strong> {{ req_data.request.check_in }}</p>
+        <p><strong>Check-out Date:</strong> {{ req_data.request.check_out }}</p>
+     
+        <!-- Display booking status -->
+        <div class="status {% if req_data.request.status == 'Accepted' %}accepted{% else %}pending{% endif %}">
+            {{ req_data.request.status }}
+        </div>
+        
+
+        <form class="assign-room-form" method="post" action="{% url 'assign-room' %}">
+            {% csrf_token %}
+            <label for="room">Select Room:</label>
+            <select name="room_no" id="room-{{ req_data.request.id }}">
+                {% if req_data.available_rooms %}
+                {% for room in req_data.available_rooms %}
+                <option value="{{ room.room_no }}">{{ room.room_no }} - {{ room.type }} - {{ room.location }}</option>
+                {% endfor %}
+            {% else %}
+                <option disabled selected>No Available Rooms</option>
+            {% endif %}
+            </select>
+            <input type="hidden" name="id" value="{{ req_data.request.id }}">
+            <input type="hidden" name="email" value="{{ req_data.request.email }}">
+            <input type="hidden" name="action" class="action-field" value="">
+            <div class="button-container">
+                <button type="submit" class="send-email-button" data-action="send_email" {% if not req_data.available_rooms %}disabled{% endif %}>Send Email</button>
+                <button type="submit" class="delete-request-button" data-action="delete_request">Delete Request</button>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.send-email-button, .delete-request-button').click(function(event) {
+            var action = $(this).data('action');
+            $(this).closest('form').find('.action-field').val(action);
+
+            if (action === 'send_email') {
+                event.preventDefault(); 
+                var form = $(this).closest('form');
+                var confirmAction = confirm("Do you want to assign room and send email?");
+                if (confirmAction) {
+                    form.submit(); 
+                }
+            }
+        });
+
+        $('.assign-room-form').submit(function(event) {
+            event.preventDefault(); 
+            
+            var form = $(this);
+            var url = form.attr('action');
+            var formData = form.serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                success: function(response) {
+                    if (response.success) {
+                        if (response.action === 'send_email') {
+                            form.closest('.card').find('.status').removeClass('pending').addClass('accepted').text('Accepted');
+                            alert('Room assigned and mail sent successfully.');
+                            setTimeout(function() {
+                                location.reload();
+                            }, 200);
+                        } else if (response.action === 'delete_request') {
+                            form.closest('.card').remove();
+                        }
+                    } else {
+                        alert('Failed to process request: ' + response.error);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('Error occurred while processing request: ' + error);
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
