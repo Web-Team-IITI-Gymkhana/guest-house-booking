@@ -1,0 +1,100 @@
+
+
+{% load static %}
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+      <title>User Profile</title>
+      <style>
+          .profile-card {
+              background-color: white;
+              border-radius: 10px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              padding: 20px;
+              max-width: 600px;
+              margin: 40px auto;
+              }
+          .profile-card img {
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              object-fit: cover;
+              margin-bottom: 20px;
+              }
+              .profile-card h2 {
+                  margin-bottom: 10px;
+          }
+          .profile-card p {
+              color: #666;
+              }
+              .booking-status {
+                  margin-top: 20px;
+                  }
+                  .booking-status h3 {
+                      margin-bottom: 15px;
+                      }
+                      .booking-status ul {
+                          list-style: none;
+              padding: 0;
+              }
+              .booking-status ul li {
+              /* background: #f9f9f9; */
+              margin-bottom: 10px;
+              padding: 8px;
+              border-radius: 8px;
+              /* padding-right:20px ; */
+              /* display: flex; */
+              padding-right: 20px;
+              justify-content: space-between;
+              }
+              
+              </style>
+  </head>
+  <body>
+      <div class="profile-card text-center">
+          <img src="../static/assets/profile.png" alt="User Profile Picture">
+          <h2>{{ first_name }} {{ last_name }}</h2>
+          <p>{{ email }}</p>
+          
+          <div class="booking-status">
+              <h3>Here are your booking details.</h3>
+              {% if bookings %}
+              <ul>
+                  {% for booking in bookings %}
+                  <ul>
+                    <li><strong>Room Number:</strong> {{ booking.room_no.room_no  }}</li>
+                   <li><strong>Room Type:</strong> 
+                    {% if booking.room_no.room_type == "YAC" %}
+                        AC
+                    {% elif booking.room_no.room_type == "NAC" %}
+                        NON-AC
+                    {% else %}
+                        {{ booking.room_no.room_type }}
+                    {% endif %}</li>
+                    <li><strong>Location:</strong> {{ booking.room_no.location }}</li>
+                    <li><strong>Check-in Date:</strong> {{ booking.start_date }}</li>
+                    <li><strong>Check-out Date:</strong> {{ booking.end_date }}</li>
+                    <hr>
+                    <!-- <span>Room No:</span> {{ booking.room_no.room_no }}<br>
+                    <span>Room No:</span> {{ booking.room_no.room_no }}<br>
+                    <span>Room Type:</span> {{ booking.room_no.room_type }}<br>
+                    <span>Location:</span> {{ booking.room_no.location }}<br>
+                    <span>Check-in:</span> {{ booking.start_date }}<br>
+                    <span>Check-out:</span> {{ booking.end_date }} -->
+                  </ul>
+                      {% endfor %}
+                      </ul>
+                      {% else %}
+                      <p>Booking confirmation under process.</p>
+                      {% endif %}
+                      </div>
+                      </div>
+                      </body>
+                      </html>
+                   

@@ -1,0 +1,29 @@
+<!-- templates/success_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/success.css">
+    <title>Success</title>
+</head>
+<body onload="openPopup()">
+    <div class="popup_container">
+        <div class="popup" id="popup">
+            <img src="../static/assets/tick.png" alt="">
+            <h2>Thank you! Your details are submitted successfully!</h2>
+            <p>Keep checking your mail for booking confirmation. You can view bookings under view profile too!</p>
+            <button type="button" onclick="redirectToMain()">Redirect to main</button>
+        </div>
+    </div>
+    <script>
+        let popup = document.getElementById("popup");
+        function openPopup() {
+            popup.classList.add("open-popup");
+        }
+        function redirectToMain() {
+            window.location.href = "{% url 'main' %}";
+        }
+    </script>
+</body>
+</html>

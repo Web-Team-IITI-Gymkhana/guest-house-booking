@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/user_profile.css">
+</head>
+<body>
+    <div class="profile_container">
+        <nav>
+            <!-- <img src="../static/assets/logo.png" alt="Logo" class="logo"> -->
+           
+            <img src="../static/assets/profile.png" alt="user_pic" id="menu-btn" class="user_pic" onclick="toggleMenu()">
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <img src="../static/assets/profile.png" alt="Profile Picture">
+                        <h2></h2>
+                    </div>
+                    <hr>
+                    <a href="#" class="sub-menu-link">
+                        <img src="../static/assets/profile.png" alt="Profile Icon">
+                        <p>View Profile</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="../static/assets/logout.png" alt="Logout Icon">
+                        <p>Logout</p>
+                        <span>></span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <script>
+        const menu=document.querySelector('#subMenu')
+        const menuBtn=document.querySelector('#menu-btn')
+
+        menuBtn.addEventListener('click',()=>{
+            menu.classList.toggle('hide')
+        })
+       document.addEventListener('click',e=>{
+        if(!menu.contains(e.target) && e.target!==menuBtn){
+            menu.classList.add('hide')
+        }
+       })
+    </script>
+</body>
+</html>
