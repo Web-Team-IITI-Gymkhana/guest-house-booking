@@ -1,0 +1,117 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+    
+
+    <!-- Content Section -->
+    <section class="about top">
+        <div class="container-hotel flex">
+            <div class="left">
+                <div class="heading">
+                    <h2>Vindhyachal Guesthouse</h2>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis sint voluptas commodi omnis minus esse eos sunt aut rerum illo culpa fugiat quod, id quisquam sapiente, facilis incidunt quia maiores. Enim rem debitis dolor nemo consequuntur, unde veniam labore reiciendis aliquid excepturi nihil qui architecto, repellat temporibus ullam sapiente, eius magni pariatur impedit assumenda!</p>
+                <button type="button" class="primary-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                   View Details
+                </button>
+                 <div class="modal fade" class="modal-dialog modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Vindhyachal Guesthouse</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h2>Hello </h2>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores voluptatum possimus dolores ipsa! Dolores vero quo excepturi. Nulla, quod delectus sed nobis enim fuga commodi tenetur quo repellat iusto nesciunt repellendus totam eligendi ipsum alias dolorum? Culpa odio dolorum mollitia fugiat laudantium. Debitis quaerat impedit ut, nobis quod officiis laborum excepturi, nesciunt tempore minus hic ipsum harum.
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Download pdf</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="secondary-btn" onclick="checkUser(event)">Book Now</button>
+                
+               
+            </div>
+            <div class="right">
+                <img src="{% static 'assets/abhinandan1.jpg' %}" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="about reversed">
+        <div class="container-hotel flex">
+            <div class="right">
+                <img src="{% static 'assets/abhinandan1.jpg' %}" alt=""> 
+            </div>
+            <div class="left">
+                <div class="heading">
+                    <h2>Hostel Accommodation</h2>  
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis amet, quasi consectetur deleniti dolorum incidunt unde facilis odit, voluptates ullam dolore. Magnam culpa asperiores provident repellendus sequi commodi quibusdam veritatis hic recusandae necessitatibus. Commodi voluptas magnam accusamus distinctio assumenda, ipsam ab nihil sunt aliquam illum, eius saepe esse. Ullam cupiditate alias voluptatum vero.</p>
+                <button type="button" class="primary-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    View Details
+                </button>
+                 <div class="modal fade" class="modal-dialog modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Hostel Accommodation</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h2>Hello all!!</h2>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil quo, at corrupti, soluta dolorum alias et quidem similique possimus vitae a nostrum sint pariatur fugit ab sed cupiditate sequi molestiae!
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Download pdf</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="secondary-btn" onclick="checkUser(event)">Book Now</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        function redirectToBooking() {
+            window.location.href = "{% url 'booking_view' %}";
+        }
+      
+   
+ 
+        function checkUser(event) {
+            const isAuthenticated = "{{ request.user.is_authenticated }}";
+
+            if (isAuthenticated === "False") {
+                event.preventDefault();
+                alert('Please login to be able to book.');
+                window.location.href = "{% url 'login' %}";
+            } else {
+                redirectToBooking();
+            }
+
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            history.pushState(null, document.title, location.href);
+            window.addEventListener('popstate', function(event) {
+                location.href = "{% url 'main' %}";
+            });
+        });
+</script>
+
+    </script>
+    <!-- End of Content Section -->
+</body>
+</html>
+
+{% endblock %}
+
