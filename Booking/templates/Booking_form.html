@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="booking_form_body">
+    <div class="background">
+        <div class="request_form_container">
+            <h2>Please fill your details</h2>
+            <form id="bookingForm" action="{% url 'booking_view' %}" method="post" class="request_form">
+                {% csrf_token %}
+                <div class="input-row">
+                    <div class="input-box">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" id="first_name" name="first_name" value="{{ form.first_name.value }}" required>
+                        <span class="error" id="first_name_error"></span>
+                    </div>
+        
+                    <div class="input-box">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" id="last_name" name="last_name" value="{{ form.last_name.value }}" required >
+                        <span class="error" id="last_name_error"></span>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-box">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="{{ form.email.value }}" required >
+                        <span class="error" id="email_error"></span>
+                    </div>
+                    <div class="input-box">
+                        <label for="contact">Contact:</label>
+                        <input type="text" id="contact" name="contact" required>
+                        <span class="error" id="contact_error"></span>
+                    </div>
+                </div>
+            
+                <div class="input-row">
+                    <div class="input-box">
+                        <label for="check_in">Check-In Date:</label>
+                        <input type="date" id="check_in" name="check_in" required>
+                        <span class="error" id="check_in_error"></span>
+                    </div>
+                    <div class="input-box">
+                        <label for="check_out">Check-Out Date:</label>
+                        <input type="date" id="check_out" name="check_out" required>
+                        <span class="error" id="check_out_error"></span>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label for="number_guest">Number of Guests:</label>
+                    <input type="number" id="number_guest" name="number_guest" required>
+                    <span class="error" id="number_guest_error"></span>
+                </div>
+            
+                <div class="input-box">
+                    <label for="reason" class="reason_cls">Reason:</label>
+                    <input type="text" id="reason" name="reason" required>
+                    <span class="error" id="reason_error"></span>
+                </div>
+            
+            <input type="submit" value="Submit" class="btn_formsubmit"> 
+
+        </form>
+    </div>
+</div>
+</div>
+    <style>
+     
+    .error {
+        display: block;
+        font-size: small;
+        color: rgb(248, 8, 8);
+        margin-top: 2px;
+        margin-bottom: 5px;
+        margin-left: 3px;
+    }
+</style>
+<script>document.getElementById('bookingForm').addEventListener('submit', function(event) {
+    // event.preventDefault(); 
+    let formValid = true;
+
+    // Clear previous errors
+    document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+    // Validate First Name
+    let firstName = document.getElementById('first_name').value;
+    if (!firstName) {
+        document.getElementById('first_name_error').textContent = 'First name is required';
+        formValid = false;
+    }
+
+    // Validate Last Name
+    let lastName = document.getElementById('last_name').value;
+    if (!lastName) {
+        document.getElementById('last_name_error').textContent = 'Last name is required';
+        formValid = false;
+    }
+
+    // Validate Email
+    let email = document.getElementById('email').value;
+    if (!email || !email.includes('@')) {
+        document.getElementById('email_error').textContent = 'Valid email is required';
+        formValid = false;
+    }
+
+    // Validate Contact
+    let contact = document.getElementById('contact').value;
+    if (!contact || contact.length !== 10 || !/^\d+$/.test(contact)) {
+        document.getElementById('contact_error').textContent = 'Contact number must be exactly 10 digits';
+        formValid = false;
+    }
+
+    // Validate Number of Guests
+    let numberGuest = document.getElementById('number_guest').value;
+    if (!numberGuest || numberGuest <= 0) {
+        document.getElementById('number_guest_error').textContent = 'Number of guests must be greater than 0';
+        formValid = false;
+    }
+
+    // Validate Dates
+    let checkIn = document.getElementById('check_in').value;
+    let checkOut = document.getElementById('check_out').value;
+    let today = new Date().toISOString().split('T')[0];
+    
+    if (!checkIn || checkIn < today) {
+        document.getElementById('check_in_error').textContent = 'Check-in date cannot be in the past';
+        formValid = false;
+    }
+    if (!checkOut || checkOut <= checkIn) {
+        document.getElementById('check_out_error').textContent = 'Check-out date must be after the check-in date';
+        formValid = false;
+    }
+
+    // Validate Reason
+    let reason = document.getElementById('reason').value;
+    if (!reason) {
+        document.getElementById('reason_error').textContent = 'Reason is required';
+        formValid = false;
+    }
+
+    if (!formValid) {
+        event.preventDefault();
+    }
+
+});
+</script>
+
+{% endblock content %}

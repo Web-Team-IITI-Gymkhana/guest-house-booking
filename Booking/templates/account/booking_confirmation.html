@@ -1,0 +1,26 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Confirmation</title>
+</head>
+<body>
+    <h1>Booking Confirmation</h1>
+    <p>Dear {{ first_name }} {{ last_name }},</p>
+    <p>We are pleased to confirm your booking. Here are the details:</p>
+    <ul>
+        <li><strong>Room Number:</strong> {{ room_no }}</li>
+        <li><strong>Room Type:</strong> {{ room_type }}</li>
+        <li><strong>Location:</strong> {{ room_location }}</li>
+        <li><strong>Check-in Date:</strong> {{ check_in }}</li>
+        <li><strong>Check-out Date:</strong> {{ check_out }}</li>
+    </ul>
+    <p>Thank you for choosing our guesthouse. We look forward to your stay.</p>
+    <p>Best regards,<br>Guesthouse Booking Team</p>
+</body>
+</html>
